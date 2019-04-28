@@ -23,6 +23,8 @@ public class SoftRefQ {
                 if (softQueue != null){
                     UserSoftReference obj = null;
                     try{
+                        // 当垃圾回收器准备回收一个对象时，如果发现它还有软引用，会在回收对象后，将这个软引用加入引用队列，
+                        // 以通知应用程序对象的回收情况。所以此处才可以获取。
                         obj = (UserSoftReference)softQueue.remove();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -36,6 +38,7 @@ public class SoftRefQ {
         }
     }
 
+    // 编译后，进入target的classes目录，执行命令 java -Xms10m -Xmx15m liaodehe.learnmore.shizhanjvm.c4.SoftRefQ
     public static void main(String[] args){
         Thread t = new CheckRefQueue();
         t.setDaemon(true);
