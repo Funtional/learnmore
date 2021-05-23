@@ -10,8 +10,11 @@ public class TestPC {
         SynContainer synContainer = new SynContainer();
         Productor productor = new Productor("生产者y", synContainer);
         Consumer consumer1 = new Consumer("消费者1", synContainer);
+        Consumer consumer２ = new Consumer("消费者２", synContainer);
+        productor.setPriority(Thread.MAX_PRIORITY);
         productor.start();
         consumer1.start();
+        consumer２.start();
 
     }
 }
