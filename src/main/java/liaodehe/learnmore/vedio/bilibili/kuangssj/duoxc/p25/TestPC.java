@@ -52,7 +52,7 @@ class Consumer extends Thread{
     @Override
     public void run() {
         Chicken chicken = null;
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             chicken = synContainer.pop();
         }
     }
@@ -98,10 +98,11 @@ class SynContainer{
     }
 
     public synchronized Chicken pop() {
-        if (count == 0){
+        while (count == 0){
             try {
                 System.out.println(Thread.currentThread().getName() + "说盘子里没有了，我等！");
                 this.wait();
+                continue;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
